@@ -62,8 +62,8 @@ sequenceDiagram
 
 ```bash
 # 1. Clone your repository
-git clone https://github.com/hamdan-Deb/Roblox-Key-System-Architecture.git
-cd Roblox-Key-System-Architecture
+git clone https://github.com/hamdan-Deb/Roblox-Executor-Key-System.git
+cd Roblox-Executor-Key-System
 
 # 2. Create virtual environment
 python3 -m venv venv
