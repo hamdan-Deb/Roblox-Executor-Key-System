@@ -121,10 +121,8 @@ When an authorization link like `https://auth.platorelay.com/a?d=<payload>` is g
 Public claims of standalone "Key Generators" represent social engineering and malware distribution vectors.
 
 ### The Mathematical Formula:
-```math
-KeyHash = MD5(HWID + Timestamp + SecretSalt)
-
-KeyHash=MD5(HWID∥Timestamp∥SecretSalt)
+```text
+KeyHash = MD5(HWID || Timestamp || SecretSalt)
 
 * **Pre-image Resistance:** Reversing an MD5/SHA256 string back into the constituent secret salt and session seed is mathematically computationally intractable ($2^{128}$ operations).
 * **State Isolation:** The executor runtime does **not** evaluate whether a key is "mathematically valid" locally. It performs an active lookup:
