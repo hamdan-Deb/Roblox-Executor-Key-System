@@ -1,9 +1,8 @@
 <div align="center">
 
 # Third-Party Key Authentication & Lua DRM Architecture
-### Comprehensive Threat Model, Cryptographic Analysis & Gateway State Verification
+### Cryptographic Analysis & Gateway State Verification
 
-[![Research Status](https://img.shields.io/badge/Research-Active-0ea5e9?style=for-the-badge)](#)
 [![Focus: Cybersecurity](https://img.shields.io/badge/Focus-Cybersecurity%20%26%20AppSec-111827?style=for-the-badge&logo=hackthebox&logoColor=white)](#)
 [![Threat Model: STRIDE](https://img.shields.io/badge/Threat%20Model-STRIDE-red?style=for-the-badge)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald?style=for-the-badge)](LICENSE)
@@ -23,8 +22,6 @@
 
 ---
 
-> **Research type:** Independent Application Security & Cryptographic Investigation  
-> **Status:** Active / Empirical Verification  
 > **Author:** hamdan (`@hamdan-Deb`)  
 > **Subject:** Roblox exploit key generation, Luarmor DRM, PlatoRelay, Linkvertise/LootLabs gateways, and token lifecycle
 
@@ -124,11 +121,14 @@ When an authorization link like `https://auth.platorelay.com/a?d=<payload>` is g
 Public claims of standalone "Key Generators" represent social engineering and malware distribution vectors.
 
 ### The Mathematical Formula:
-$$\text{KeyHash} = \mathcal{H}_{\text{MD5}}(\text{HWID} \parallel \text{Timestamp} \parallel \mathcal{K}_{\text{secret\_salt}})$$
+```math
+KeyHash = MD5(HWID + Timestamp + SecretSalt)
+
+KeyHash=MD5(HWID∥Timestamp∥SecretSalt)
 
 * **Pre-image Resistance:** Reversing an MD5/SHA256 string back into the constituent secret salt and session seed is mathematically computationally intractable ($2^{128}$ operations).
 * **State Isolation:** The executor runtime does **not** evaluate whether a key is "mathematically valid" locally. It performs an active lookup:
-  $$\text{Client Response} = f_{\text{lookup}}(\text{DB}_{\text{live}}, \text{Key})$$
+  $$\text{ClientResponse} = \text{Query}(\text{Database}_{\text{live}}, \text{Key})$$
   Without an existing matching row marked `APPROVED` inside the backend datastore, client execution halts immediately.
 
 ---
