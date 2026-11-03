@@ -55,25 +55,29 @@ sequenceDiagram
     Auth->>DB: Query Session
     Auth-->>Client: Status 200 OK (Key Validated)
 ```
-
 ---
 
 ## Installation & Setup Instructions
-
 ```bash
-# 1. Clone your repository
+# 1. Clone your repository 
 git clone https://github.com/hamdan-Deb/Roblox-Executor-Key-System.git
+
+   :: 1 (a) Navigate into your project folder
 cd Roblox-Executor-Key-System
 
 # 2. Create virtual environment
 python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# 3. Install dependencies
-pip install -r requirements.txt
+   :: 2 (a) Since I had the fastest python manager installed i.e., **uv**, 
+I implemented the following cmd to create the virtual environment using uv
+´´´uv venv```
 
-# 4. Run automated test suite
-pytest test_app.py
+# 3. Activate the virtual environment
+.venv\Scripts\activate
+
+# 4. Install all dependencies from requirements.txt
+uv pip install -r requirements.txt
 
 # 5. Launch web application
 python app.py
@@ -81,6 +85,7 @@ python app.py
 Open your browser and navigate to: **`http://127.0.0.1:5000`**
 
 ---
+<img width="1243" height="559" alt="image" src="https://github.com/user-attachments/assets/ba17a6fc-4ef3-4e5d-aa7f-b82635c64064" />
 
 ## Example API Requests (`curl`)
 
@@ -99,6 +104,8 @@ curl -X POST http://127.0.0.1:5000/api/auth/token/verify \
 ```
 
 ---
+
+[![Live Demo](https://img.shields.io/badge/Vercel-Click%20to%20see%20the%20Live%20Demo-blue?style=for-the-badge&logo=vercel)](https://roblox-executor-key-system.vercel.app/)
 
 ## Defensive Engineering Checklist
 
