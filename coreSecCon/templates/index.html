@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auth Security Lab | Architecture & Cryptography</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="shield-icon">🛡️</span>
+        <div>
+          <h2>AUTH_LAB</h2>
+          <span class="sub">Defensive Architecture v2.4</span>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <button class="nav-btn active" data-tab="dashboard">📊 Security Dashboard</button>
+        <button class="nav-btn" data-tab="explorer">🔍 URL Payload Explorer</button>
+        <button class="nav-btn" data-tab="crypto">🔐 Crypto & Token Lab</button>
+        <button class="nav-btn" data-tab="auth-sim">🕹️ Auth Simulator</button>
+        <button class="nav-btn" data-tab="webhook-sim">📡 Webhook & Replay Lab</button>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="status-indicator">
+          <span class="dot"></span>
+          <span>Simulation Active (Isolated)</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content">
+      <!-- Top Notice Banner -->
+      <header class="topbar">
+        <div class="banner">
+          <span class="badge warning">EMPIRICAL NOTICE</span>
+          <span>Format analysis: 32-character hexadecimal digests indicate 128-bit length, but do <strong>not</strong> prove MD5 is used.</span>
+        </div>
+      </header>
+
+      <!-- TAB 1: DASHBOARD -->
+      <section id="dashboard" class="tab-pane active">
+        <div class="section-header">
+          <h1>Security Operations Dashboard</h1>
+          <p>Real-time monitoring of session states, backend database checks, and security warnings.</p>
+        </div>
+        <div class="grid grid-2">
+          <!-- Session Table Card -->
+          <div class="card">
+            <h3>Active Sessions in State Store</h3>
+            <div class="table-container">
+              <table id="sessions-table">
+                <thead>
+                  <tr>
+                    <th>Session ID</th>
+                    <th>HWID Hash</th>
+                    <th>Status</th>
+                    <th>Token</th>
+                    <th>TTL</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Security Logs Card -->
+          <div class="card">
+            <h3>Audit & Tamper Log</h3>
+            <div class="table-container">
+              <table id="logs-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Severity</th>
+                    <th>Event</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: URL PAYLOAD EXPLORER -->
+      <section id="explorer" class="tab-pane">
+        <div class="section-header">
+          <h1>URL Payload Explorer</h1>
+          <p>Inspect how modern authorization relays encode routing data into web addresses.</p>
+        </div>
+        <div class="card">
+          <div class="input-group">
+            <label>Sample Gateway URL</label>
+            <input type="text" id="explorer-url-input" value="https://auth.simulator.internal/a?d=ZXlKaGQybGtJam9pWVdGaE0yTXpJanAwZVNJNk1UY3pNRE00Tmpnd01Id3NJbU5oYlhCaGFXZHVJam9pYkc5dmRHeGhaSE1pZlE9PQ==&sig=a8f9c12e&utm_source=lootlabs">
+            <button class="btn primary" id="btn-inspect-url">Inspect Payload</button>
+          </div>
+          <div id="url-inspection-result" class="code-view hidden"></div>
+        </div>
+      </section>
+
+      <!-- TAB 3: CRYPTO PLAYGROUND -->
+      <section id="crypto" class="tab-pane">
+        <div class="section-header">
+          <h1>Cryptography Playground</h1>
+          <p>Examine one-way hash behavior, digest lengths, and token entropy.</p>
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Hash Generator</h3>
+            <div class="input-group">
+              <label>Input String</label>
+              <input type="text" id="hash-input" value="DeviceHWID_192.168.1.1_Timestamp">
+            </div>
+            <div class="input-group">
+              <label>Secret Salt (For HMAC)</label>
+              <input type="text" id="hash-salt" value="DeveloperSecretSalt2026">
+            </div>
+            <button class="btn primary" id="btn-calculate-hash">Generate Digests</button>
+            <div id="hash-output" class="code-view hidden"></div>
+          </div>
+
+          <div class="card">
+            <h3>Cryptographically Secure Token Generator</h3>
+            <p>Generates 128-bit CSPRNG tokens indistinguishable from MD5 digests in character format.</p>
+            <button class="btn secondary" id="btn-generate-token">Mint New Random Token</button>
+            <div id="token-output" class="code-view hidden"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: AUTH SIMULATOR -->
+      <section id="auth-sim" class="tab-pane">
+        <div class="section-header">
+          <h1>Authentication Simulator</h1>
+          <p>Step-by-step authorization flow matching client-side executors and server databases.</p>
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Step 1: Request New Session (In-Game Client)</h3>
+            <div class="input-group">
+              <label>Hardware Identifier (HWID)</label>
+              <input type="text" id="sim-hwid" value="DEVICE_CORE_8921B">
+            </div>
+            <button class="btn primary" id="btn-start-session">Initialize Session</button>
+            <div id="session-output" class="code-view hidden"></div>
+          </div>
+
+          <div class="card">
+            <h3>Step 2: Client Verification (In-Game Verification)</h3>
+            <p>Test submitting an offline guessed key vs. an authorized key.</p>
+            <div class="input-group">
+              <label>Token / Key</label>
+              <input type="text" id="verify-token-input" placeholder="e.g. FREE_67867b9dbcc07475eb5392f1578f7bd5">
+            </div>
+            <div class="input-group">
+              <label>HWID Hash</label>
+              <input type="text" id="verify-hwid-input" placeholder="Device hardware hash">
+            </div>
+            <button class="btn secondary" id="btn-verify-token">Submit Key to Server</button>
+            <div id="verify-output" class="code-view hidden"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: WEBHOOK SIMULATOR -->
+      <section id="webhook-sim" class="tab-pane">
+        <div class="section-header">
+          <h1>Webhook Simulator & Replay Defense</h1>
+          <p>Simulate ad-provider clearance webhooks and test anti-tamper security controls.</p>
+        </div>
+        <div class="card">
+          <div class="grid grid-3">
+            <div class="input-group">
+              <label>Target Session ID</label>
+              <input type="text" id="webhook-session-id" placeholder="sess_...">
+            </div>
+            <div class="input-group">
+              <label>Simulated Action</label>
+              <select id="webhook-action">
+                <option value="APPROVE">APPROVE (Tasks Completed)</option>
+                <option value="REJECT">REJECT (Tasks Failed)</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label>Attack Simulator Checkbox</label>
+              <div class="checkbox-row">
+                <label><input type="checkbox" id="tamper-signature"> Corrupt Signature</label>
+                <label><input type="checkbox" id="tamper-timestamp"> Expired Timestamp</label>
+              </div>
+            </div>
+          </div>
+          <button class="btn primary" id="btn-fire-webhook">Send Webhook to Server</button>
+          <button class="btn warning" id="btn-replay-webhook">Replay Last Request (Test Defense)</button>
+          <div id="webhook-output" class="code-view hidden"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
