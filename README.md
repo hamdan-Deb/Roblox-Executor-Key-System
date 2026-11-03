@@ -3,7 +3,7 @@
 # Third-Party Key Authentication & Lua DRM Architecture
 ### Cryptographic Analysis & Gateway State Verification
 
-[![Focus: Cybersecurity](https://img.shields.io/badge/Focus-Cybersecurity%20%26%20AppSec-111827?style=for-the-badge&logo=hackthebox&logoColor=white)](#)
+[![Focus: Cybersecurity](https://img.shields.io/badge/Focus-Cybersecurity%20%26%20AppSec-111827?style=for-the-badge&logo=hackthebox&logoColor=white)](./coreSecCon)
 [![Threat Model: STRIDE](https://img.shields.io/badge/Threat%20Model-STRIDE-red?style=for-the-badge)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald?style=for-the-badge)](LICENSE)
 
