@@ -1,9 +1,8 @@
-# Authentication Architecture & Cryptographic Verification Simulator
+# Authentication Architecture & Verification Simulation
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](#)
 [![Flask](https://img.shields.io/badge/Framework-Flask-green.svg)](#)
 [![Security Focus](https://img.shields.io/badge/Focus-AppSec%20%26%20Cryptography-black.svg)](#)
-[![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)
 
 An educational, local cybersecurity laboratory demonstrating how modern authentication relays decouple user identity, advertising checkpoints, and client runtime whitelists.
 
